@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Gallery</title>
+    <link rel="stylesheet" href="photo.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #ffe4e1;
+            overflow-x: hidden;
+            text-align: center;
+        }
+
+        /* Background Video */
+        #backgroundVideo {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            z-index: -1;
+            display: none;
+        }
+
+        .photo-gallery {
+            display: flex;
+            gap: 60px;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding-top: 100px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .photo-gallery img {
+            width: 200px;
+            height: 200px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            object-fit: cover;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .photo-gallery img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        audio, video {
+            display: none;
+            margin-top: 20px;
+        }
+
+        /* Optional: Show player centered */
+        #audioPlayer, #videoPlayer {
+            display: block;
+            margin: 20px auto;
+            max-width: 90%;
+        }
+
+        .heading {
+            font-size: 24px;
+            margin-top: 20px;
+            color: #d6336c;
+        }
+
+        .heading img {
+            width: 30px;
+            vertical-align: middle;
+            margin-left: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background Video (currently hidden) -->
+    <video id="backgroundVideo" autoplay muted loop></video>
+
+
+    <!-- Photo Gallery -->
+    <div class="photo-gallery">
+        <img src="1000003312.jpg" alt="Image 1" onclick="playMedia('Rathathin-Rathame.mp3')">
+        <img src="photo1.jpg" alt="Image 2" onclick="playMedia('aluzhu.mp3')">
+        <img src="photo3.jpg" alt="Image 4" onclick="playMedia('vaiyadi.mp3')">
+        <img src="photo4.jpg" alt="Image 5" onclick="playMedia('aanandha-yazhai-2574.mp3')">
+        <img src="photo5.jpg" alt="Image 6" onclick="playMedia('Kutty.mp3')">
+        <img src="photo6.jpg" alt="Image 7" onclick="playMedia('v1.mp4')">
+        <img src="photo7.jpg" alt="Image 8" onclick="playMedia('v2.mp4')">
+        <img src="photo8.jpg" alt="Image 9" onclick="playMedia('Untitled design.mp4')">
+        <img src="photo2.jpg" alt="Image 3" onclick="playMedia('my thanga.mp3')">
+        <img src="photo9.jpg" alt="Image 10" onclick="playMedia('Unakku.mp3')">
+    </div>
+
+    <!-- Media Players -->
+    <audio id="audioPlayer" controls></audio>
+    <video id="videoPlayer" width="600" controls></video>
+
+    <!-- Script -->
+    <script>
+        function playMedia(fileName) {
+            const audioPlayer = document.getElementById("audioPlayer");
+            const videoPlayer = document.getElementById("videoPlayer");
+
+            if (fileName.endsWith(".mp4")) {
+                // Play video
+                audioPlayer.pause();
+                audioPlayer.style.display = "none";
+
+                videoPlayer.src = fileName;
+                videoPlayer.style.display = "block";
+                videoPlayer.load();
+                videoPlayer.play();
+            } else {
+                // Play audio
+                videoPlayer.pause();
+                videoPlayer.style.display = "none";
+
+                audioPlayer.src = fileName;
+                audioPlayer.style.display = "block";
+                audioPlayer.load();
+                audioPlayer.play();
+            }
+        }
+    </script>
+
+</body>
+</html>
