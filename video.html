@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Video Player</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      background-color: black;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    video {
+      width: 90%;
+      height: auto;
+      max-height: 90vh;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+    }
+
+    .back-button {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      padding: 10px 15px;
+      background: white;
+      color: black;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <a class="back-button" href="nextpage.html">← Back</a>
+
+  <video id="videoPlayer" controls autoplay></video>
+
+  <script>
+    // Get the video file from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const fileName = urlParams.get('video');
+
+    if (fileName) {
+      const videoElement = document.getElementById('videoPlayer');
+      videoElement.src = fileName; // Assumes the video file is in the same folder
+      videoElement.load();
+      videoElement.play();
+    }
+  </script>
+
+</body>
+</html>
